@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
       }
     });
 
-    res.json({result});
+    res.json(result);
   } catch (error) {
     console.error('Error fetching HTML page:', error);
     res.status(500).json({ error: 'Internal Server Error' });

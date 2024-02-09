@@ -14,17 +14,17 @@ module.exports = async (req, res) => {
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
     const targetDivs = $('div.col-lg-3.col-md-4.col-sm-6.col-xs-6');
-    const result = [];
+    let mmrValue = null;
 
     targetDivs.each((index, divElement) => {
       const dtElement = $(divElement).find('dt');
       if (dtElement.text().trim() === 'MMR') {
         const ddElement = $(divElement).find('dd.rank-Iron');
-        result.push(ddElement.text().trim());
+        mmrValue = parseInt(ddElement.text().trim(), 10);
       }
     });
 
-    res.json(result);
+    res.json(mmrValue);
   } catch (error) {
     console.error('Error fetching HTML page:', error);
     res.status(500).json({ error: 'Internal Server Error' });

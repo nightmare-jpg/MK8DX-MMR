@@ -1,4 +1,5 @@
 {
+  "private": true,
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
     "express": "^4.18.2",

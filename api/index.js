@@ -32,6 +32,10 @@ module.exports = async (req, res) => {
       });
     });
 
+    if (mmrValues.length === 1) {
+      mmrValues = mmrValues[0];
+    }
+
     res.json(mmrValue);
   } catch (error) {
     console.error('Error fetching HTML page:', error);

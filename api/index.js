@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
 
   const url = `https://www.mk8dx-lounge.com/PlayerDetails/${id}`;
 
-  try {
+   try {
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
     const targetDivs = $('div.col-lg-3.col-md-4.col-sm-6.col-xs-6');
@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
       mmrValues = mmrValues[0];
     }
 
-    res.json(mmrValue);
+    res.json(mmrValues);
   } catch (error) {
     console.error('Error fetching HTML page:', error);
     res.status(500).json({ error: 'Internal Server Error' });

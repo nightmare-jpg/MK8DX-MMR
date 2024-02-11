@@ -14,14 +14,22 @@ module.exports = async (req, res) => {
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
     const targetDivs = $('div.col-lg-3.col-md-4.col-sm-6.col-xs-6');
-    let mmrValue = null;
+    const rankClasses = ['rank-Iron', 'rank-Sapphire', 'rank-Bronze', 'rank-Silver', 'rank-Gold', 'rank-Platinum', 'rank-Ruby', 'rank-Diamond', 'rank-Master', 'rank-Grandmaster'];
+    let mmrValues = [];
 
-    targetDivs.each((index, divElement) => {
-      const dtElement = $(divElement).find('dt');
-      if (dtElement.text().trim() === 'MMR') {
-        const ddElement = $(divElement).find('dd.rank-Iron');
-        mmrValue = parseInt(ddElement.text().trim(), 10);
-      }
+    rankClasses.forEach(rankClass => {
+      targetDivs.each((index, divElement) => {
+        const dtElement = $(divElement).find('dt');
+        if (dtElement.text().trim() === 'MMR') {
+          const ddElements = $(divElement).find(`dd.${rankClass}`);
+          ddElements.each((i, ddElement) => {
+            const mmrValue = parseInt($(ddElement).text().trim(), 10);
+            if (!isNaN(mmrValue)) {
+              mmrValues.push(mmrValue);
+            }
+          });
+        }
+      });
     });
 
     res.json(mmrValue);

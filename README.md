@@ -1,6 +1,13 @@
 
 #  MK8DX Lounge Command 
 
+## March Update (in process making)
+
+- New site to Generate the links
+- Added Rank
+- Added Gain/Loss
+- pspStare2
+
 so i made this code for my friend mmr, it kinda scuffed code. so i might update it once in a while.
 
 it https://mk-8-dx-mmr.vercel.app/api?id=

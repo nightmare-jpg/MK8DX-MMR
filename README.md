@@ -3,10 +3,12 @@
 
 ## March Update (in process making)
 
-- New site to Generate the links
+- New site to Generate the links (done)
 - Added Rank
 - Added Gain/Loss
 - pspStare2
+
+### Now you can generate your links on https://mk-8-dx-mmr.vercel.app/
 
 so i made this code for my friend mmr, it kinda scuffed code. so i might update it once in a while.
 

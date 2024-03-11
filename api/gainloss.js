@@ -13,35 +13,27 @@ module.exports = async (req, res) => {
     try {
         const response = await axios.get(url);
         const $ = cheerio.load(response.data);
-
+    
         const targetDivs = $('div.col-lg-3.col-md-4.col-sm-6.col-xs-6');
-
-        let gainLossValues = [];
-
+    
+        let gainLossValue = null;
+    
         targetDivs.each((index, divElement) => {
-            const dtElement = $(divElement).find('dt');
-            const ddElement = $(divElement).find('dd');
-
-            dtElement.each((i, dt) => {
-                if ($(dt).text().trim() === 'Gain/Loss (Last 10)') {
-                    // Find the corresponding dd element next to the matched dt
-                    const nextDD = $(dt).next('dd');
-
-                    // Extract the text from the dd element and remove non-numeric characters
-                    const gainLossValue = nextDD.text().trim().replace(/[^0-9]/g, '');
-
-                    // Add the value to the array
-                    gainLossValues.push(gainLossValue);
-                }
-            });
+          const dtElement = $(divElement).find('dt');
+          const ddElement = $(divElement).find('dd');
+    
+          dtElement.each((i, dt) => {
+            if ($(dt).text().trim() === 'Gain/Loss (Last 10)') {
+              // Find the corresponding dd element next to the matched dt
+              const nextDD = $(dt).next('dd');
+              
+              // Extract the text from the dd element
+              gainLossValue = nextDD.text().trim();
+            }
+          });
         });
-
-        // If there's only one value, assign it directly
-        if (gainLossValues.length === 1) {
-            gainLossValues = gainLossValues[0];
-        }
-
-        res.json(gainLossValues);
+    
+        res.json(gainLossValue);
     } catch (error) {
         console.error('Error fetching HTML page:', error);
         res.status(500).json({ error: 'Internal Server Error' });

@@ -27,8 +27,8 @@ module.exports = async (req, res) => {
               // Find the corresponding dd element next to the matched dt
               const nextDD = $(dt).next('dd');
               
-              // Extract the text from the dd element
-              gainLossValue = nextDD.text().trim();
+              // Extract the text from the dd element and remove double quotes
+              gainLossValue = nextDD.text().trim().replace(/"/g, '');
             }
           });
         });

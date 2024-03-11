@@ -4,7 +4,7 @@
 ## March Update (in process making)
 
 - New site to Generate the links (done)
-- Added Rank
+- Added Rank (done)
 - Added Gain/Loss
 - pspStare2
 
@@ -18,7 +18,9 @@ just add your id from your profile in https://www.mk8dx-lounge.com/
 
 then add it to Fossabot, Nightbot, StreamElements, whatever bot you using.
 
-note: it will only show your MMR
+for rank 
+
+it https://mk-8-dx-mmr.vercel.app/api/rank?id=
 
 
 Examples (using Fossabot variables for this)

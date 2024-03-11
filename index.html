@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/pico.min.css">
+    <title>MK8DX MMR Generator Beta</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+        #popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 1;
+        }
+
+        #popup-content {
+            background: #1b1a1a;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        button.popup-close {
+            background-color: #3498db;
+            color: #fff;
+            padding: 8px 15px;
+            cursor: pointer;
+            border: none;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+<div id="popup">
+    <div id="popup-content">
+        <p>Hey, Welcome to My Scuffed Page to Generate Your MMR Command</p>
+        <p> first thing first is to grab your id from your profile</p>
+        <p>usually on <a href="https://www.mk8dx-lounge.com/">MK8DX Lounge</a> then search your name, then copy the id from the url</p>
+        <p><i> Note* i will update the site in the future to find your name instead of this scuffed way</i></p>
+        <p>well have "fun" playing on mogi. <img src="https://static-cdn.jtvnw.net/emoticons/v2/emotesv2_159c809c124641be996c7def01e17a36/default/dark/1.0"></p>
+        <button class="popup-close" onclick="closePopup()">Close</button>
+    </div>
+</div>
+
+    <label for="textInput">Enter Your ID:</label>
+    <input type="text" id="textInput">
+    
+    <button onclick="generateLink()">Generate Link</button>
+
+    <p id="output"></p>
+    <p id="fossabot"></p>
+    <p id="streamelements"></p>
+    <p id="streamlabs"></p>
+    <p id="nightbot"></p>
+    <p id="moobot"></p>
+
+    <script>
+window.onload = function() {
+            document.getElementById('popup').style.display = 'flex';
+        }
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+
+
+
+        function generateLink() {
+            var userInput = document.getElementById('textInput').value;
+            if (userInput !=="") {
+            var generatedLink = 'https://mk-8-dx-mmr.vercel.app/api?id=' + encodeURIComponent(userInput);
+            document.getElementById('output').innerHTML = 'Generated Link: <a href="' + generatedLink + '">' + generatedLink + '</a>';
+            document.getElementById('fossabot').innerHTML = 'Fossabot: <a> $(customapi ' + generatedLink + ") </a>"
+            document.getElementById('streamelements').innerHTML = 'Streamelements: <a> $(customapi.' + generatedLink + ") </a>"
+            document.getElementById('nightbot').innerHTML =  'Nightbot: <a> $(urlfetch ' + generatedLink + ") </a>"
+            document.getElementById('streamlabs').innerHTML = 'Streamlabs: <a> $readapi(' + generatedLink + ") </a>"
+            document.getElementById('moobot').innerHTML = `MooBot: Doesn't support custom api commands`
+            } else {
+                alert("Press enter a vaild ID");
+            }
+        }
+    </script>
+</body>
+</html>
